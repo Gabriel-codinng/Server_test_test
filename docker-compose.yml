@@ -1,0 +1,26 @@
+version: '3'
+name: server_test_test
+services:
+  web:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./app:/var/www
+  php:
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    volumes:
+      - ./app:/var/www
+volumes:
+  mysqldata: {}
