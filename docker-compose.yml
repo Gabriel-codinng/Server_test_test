@@ -16,7 +16,7 @@ services:
     build:
       context: .
       dockerfile: php.Dockerfile
-    container_name: app
+    container_name: app_test
     restart: unless-stopped
     tty: true
     working_dir: /var/www
